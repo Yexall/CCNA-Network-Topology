@@ -2,6 +2,25 @@
 
 A complete end-to-end multi-switch and multi-router enterprise network topology built in Cisco Packet Tracer to demonstrate hands-on Layer 2/3 network engineering, protocol design and CCNA (200-301) exam topics.
 
+---
+
+## Topology Architecture & Region Segmentation
+
+To capture both enterprise scale and smaller site requirements, the network topology is split across two visual captures based on regional scale:
+
+![Enterprise Region Topology Diagram](./Images/Arizona-Topology.png)
+*Figure 1: Arizona Regional Hub Architecture*
+
+![Branch Region Topology Diagram](./Images/Fl,-Nv-Topology.png)
+*Figure 2: Florida and Nevada Regional Architecture*
+
+### Regional Breakdown & Scale Model
+* **Arizona Region (Large Enterprise Model):** Functions as the primary enterprise regional hub.
+* **Florida Region (Small Business Branch Model):** Modeled as a streamlined branch location.
+* **Nevada Region (Small Business Branch Model):** Configured as a secondary branch location.
+
+*Note: Specific topology adjustments and custom protocol configurations were made beyond the base CBT Nuggets model to test features and verify edge cases.*
+
 --- 
 
 ## Technical Highlights & Protocol Implementations
