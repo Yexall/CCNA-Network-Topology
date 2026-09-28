@@ -11,7 +11,7 @@ A complete end-to-end multi-switch and multi-router enterprise network topology 
 * **VLAN Traffic Containment & Pruning:** Configured manual VLAN trunk pruning and access restrictions across intermediate switches to isolate broadcast domains and prevent unnecessary traffic flooding on uninvolved nodes.
 * **Inter-VLAN Routing:** Implemented Layer 3 Inter-VLAN routing using Router-on-a-Stick subinterfaces on routers and integrated multilayer switch configurations via router EtherSwitch modules.
 * **Spanning Tree Protocol (STP) Tuning:** Manipulated STP bridge priorities to explicitly designate Root Bridges and control designated/blocked port roles for deterministic Layer 2 loop prevention.
-* **Topology Discovery & Path Verification:** Utilized Cisco Discovery Protocol (CDP) and Link Layer Discovery Protocol (LLDP) neighbor tables to map physical interconnects and verify active link paths.
+* **Topology Discovery & Path Verification:** Mapped physical inter-switch connections using Cisco Discovery Protocol (CDP) and Link Layer Discovery Protocol (LLDP) neighbor tables, explicitly enabling and disabling protocols globally or on specific interfaces to control neighbor updates, visibility and link path verification.
 
 --- 
 
