@@ -1,0 +1,109 @@
+hostname Fl-R1
+!
+!
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username Yexall secret 5 $1$mERr$3HhIgMGBA/9qNmgzccuxv0
+!
+!
+license udi pid CISCO2901/K9 sn FTX1524R1D1-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name local.net
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.0.0.3 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1.10
+ encapsulation dot1Q 10
+ ip address 10.16.16.1 255.255.255.0
+!
+interface GigabitEthernet0/1.20
+ encapsulation dot1Q 20
+ ip address 10.16.18.1 255.255.255.0
+!
+interface FastEthernet0/0/0
+ switchport mode access
+!
+interface FastEthernet0/0/1
+ switchport mode access
+!
+interface FastEthernet0/0/2
+ switchport mode access
+!
+interface FastEthernet0/0/3
+ switchport mode access
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^C
+************************************************
+
+WELCOME TO THE ROUTER.
+
+************************************************
+
+^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login local
+!
+!
+!
+end
