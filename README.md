@@ -28,9 +28,10 @@ To capture both enterprise scale and smaller site requirements, the network topo
 * **VLSM Subnetting & Addressing:** Calculated custom Variable Length Subnet Masks (VLSM) across LAN segments, maximizing IP space efficiency across discrete VLAN broadcast domains.
 * **VLAN Segmentation & Trunk Negotiation:** Partitioned switch ports into functional VLANs (10, 20, 30, 40, 45) using 802.1Q trunk links, explicitly configuring Dynamic Trunking Protocol (DTP) modes to restrict unauthorized trunk negotiation.
 * **VLAN Traffic Containment & Pruning:** Configured manual VLAN trunk pruning and access restrictions across intermediate switches to isolate broadcast domains and prevent unnecessary traffic flooding on uninvolved nodes.
-* **Inter-VLAN Routing:** Implemented Layer 3 Inter-VLAN routing using Router-on-a-Stick subinterfaces on routers and integrated multilayer switch configurations via router EtherSwitch modules.
+* **Inter-VLAN Routing (All regions):** Implemented Layer 3 Inter-VLAN routing using Router-on-a-Stick subinterfaces on routers and integrated multilayer switch configurations via router EtherSwitch modules.
 * **Spanning Tree Protocol (STP) Tuning:** Manipulated STP bridge priorities to explicitly designate Root Bridges and control designated/blocked port roles for deterministic Layer 2 loop prevention.
 * **Topology Discovery & Path Verification:** Mapped physical inter-switch connections using Cisco Discovery Protocol (CDP) and Link Layer Discovery Protocol (LLDP) neighbor tables, explicitly enabling and disabling protocols globally or on specific interfaces to control neighbor updates, visibility and link path verification.
+* **EtherChannel Aggregation & Load Balancing (Az):** Grouped physical interfaces into logical Port-Channels across inter-switch links and configured custom frame load-distribution algorithms to optimize traffic hashing and eliminate link congestion.
 
 --- 
 
@@ -40,3 +41,4 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show vlan brief` & `show interfaces trunk` — Verified VLAN membership and 802.1Q trunking parameters.
 * `show cdp neighbors` / `show lldp neighbors` — Validated neighbor relationships and local/remote port mappings.
 * `show spanning-tree` — Confirmed Root Bridge election and blocked/designated port states.
+* `show etherchannel summary` & `show etherchannel load-balance` — Validated operational status of Port-Channels, member port bundling and load-distribution methods.
