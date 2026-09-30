@@ -8,10 +8,10 @@ A complete end-to-end multi-switch and multi-router enterprise network topology 
 
 To capture both enterprise scale and smaller site requirements, the network topology is split across two visual captures based on regional scale:
 
-![Enterprise Region Topology Diagram](./Images/Arizona%20Topology.png)
+![Enterprise Region Topology Diagram](./images/Arizona%20Topology.png)
 *Figure 1: Arizona Regional Hub Architecture*
 
-![Branch Region Topology Diagram](./Images/Fl,%20Nv%20Topology.png)
+![Branch Region Topology Diagram](./images/Fl,%20Nv%20Topology.png)
 *Figure 2: Florida and Nevada Regional Architecture*
 
 ### Regional Breakdown & Scale Model
