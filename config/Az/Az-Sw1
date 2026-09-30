@@ -30,6 +30,11 @@ spanning-tree mode pvst
 !
 !
 !
+interface Port-channel10
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport nonegotiate
+!
 interface FastEthernet0/1
  switchport trunk encapsulation dot1q
  switchport mode trunk
@@ -89,11 +94,13 @@ interface GigabitEthernet0/1
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport nonegotiate
+ channel-group 10 mode active
 !
 interface GigabitEthernet0/2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport nonegotiate
+ channel-group 10 mode active
 !
 interface Vlan1
  ip address 10.16.0.2 255.255.248.0
