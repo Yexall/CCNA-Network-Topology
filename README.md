@@ -21,6 +21,20 @@ To capture both enterprise scale and smaller site requirements, the network topo
 
 *Note: Specific topology adjustments and custom protocol configurations were made beyond the base CBT Nuggets model to test features and verify edge cases.*
 
+---
+
+## Lab Access & Credentials
+
+To access and test device configurations across the topology, use the following credentials:
+
+| Access Type / Device | Username | Password / PSK |
+| :--- | :--- | :--- |
+| **Console Access** | — | `cisco` |
+| **Privileged EXEC Mode (`enable`)** | — | `cisco` |
+| **SSH Session** | `Yexall` | `123` |
+| **WLC Management GUI/CLI** | `Yexall` | `Cisco123` |
+| **WLAN SSID (`NetworkNINJA`)** | — | `11223344` |
+
 --- 
 
 ## Technical Highlights & Protocol Implementations
@@ -32,6 +46,7 @@ To capture both enterprise scale and smaller site requirements, the network topo
 * **Spanning Tree Protocol (STP) Tuning:** Manipulated STP bridge priorities to explicitly designate Root Bridges and control designated/blocked port roles for deterministic Layer 2 loop prevention.
 * **Topology Discovery & Path Verification:** Mapped physical inter-switch connections using Cisco Discovery Protocol (CDP) and Link Layer Discovery Protocol (LLDP) neighbor tables, explicitly enabling and disabling protocols globally or on specific interfaces to control neighbor updates, visibility and link path verification.
 * **EtherChannel Aggregation & Load Balancing (Az):** Grouped physical interfaces into logical Port-Channels across inter-switch links and configured custom frame load-distribution algorithms to optimize traffic hashing and eliminate link congestion.
+* **Enterprise Wireless LAN Deployment (Az):** Integrated a Wireless LAN Controller (WLC) and Lightweight Access Points (LAPs) to provide centralized wireless management, WPA2-PSK security and dynamic IP provisioning across dedicated wireless VLANs.
 
 --- 
 
@@ -42,3 +57,16 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show cdp neighbors` / `show lldp neighbors` — Validated neighbor relationships and local/remote port mappings.
 * `show spanning-tree` — Confirmed Root Bridge election and blocked/designated port states.
 * `show etherchannel summary` & `show etherchannel load-balance` — Validated operational status of Port-Channels, member port bundling and load-distribution methods.
+
+---
+
+## Troubleshooting Highlights
+
+### Wireless LAN Controller (WLC) & AP Isolation
+* **DHCP Scope Definitions:** Resolved subnet vs. host IP configuration issues by defining proper Subnet IDs (`10.16.0.0/24`) and Pool Start addresses (`10.16.0.11`).
+* **Traffic Flow Validation:** Used static IP addressing (`10.16.0.50`) to isolate and verify CAPWAP tunnel encapsulation and bridge forwarding independently from DHCP relay behavior.
+
+---
+
+## To-Do List
+- [ ] Az: Fix wireless laptop not receiving DHCP address due to lease timeout.
