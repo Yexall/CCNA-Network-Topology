@@ -47,6 +47,7 @@ interface FastEthernet0/2
  switchport nonegotiate
 !
 interface FastEthernet0/3
+ switchport mode access
 !
 interface FastEthernet0/4
 !
@@ -61,14 +62,19 @@ interface FastEthernet0/8
 interface FastEthernet0/9
 !
 interface FastEthernet0/10
+ switchport access vlan 10
 !
 interface FastEthernet0/11
+ switchport access vlan 10
 !
 interface FastEthernet0/12
+ switchport access vlan 10
 !
 interface FastEthernet0/13
+ switchport access vlan 20
 !
 interface FastEthernet0/14
+ switchport access vlan 20
 !
 interface FastEthernet0/15
 !
