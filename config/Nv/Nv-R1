@@ -42,7 +42,7 @@ spanning-tree mode pvst
 !
 !
 interface GigabitEthernet0/0
- ip address 10.0.0.2 255.255.255.248
+ ip address 10.0.0.5 255.255.255.252
  duplex auto
  speed auto
 !
@@ -61,21 +61,26 @@ interface GigabitEthernet0/1.20
 !
 interface FastEthernet0/0/0
  switchport mode access
+ shutdown
 !
 interface FastEthernet0/0/1
  switchport mode access
+ shutdown
 !
 interface FastEthernet0/0/2
  switchport mode access
+ shutdown
 !
 interface FastEthernet0/0/3
  switchport mode access
+ shutdown
 !
 interface Vlan1
  no ip address
  shutdown
 !
 ip classless
+ip route 0.0.0.0 0.0.0.0 10.0.0.6 
 !
 ip flow-export version 9
 !
