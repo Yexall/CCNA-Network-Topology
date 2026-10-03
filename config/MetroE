@@ -1,0 +1,117 @@
+hostname MetroE
+!
+!
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username Yexall secret 5 $1$mERr$6Xd7JOYAom4QcFdSI4/Ki0
+!
+!
+license udi pid CISCO2911/K9 sn FTX152478OX-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name local.net
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.0.0.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 10.0.0.6 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address 10.0.0.10 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0/0
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/0/1
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/0/2
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/0/3
+ switchport mode access
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 10.16.0.0 255.255.248.0 10.0.0.1 
+ip route 10.16.8.0 255.255.248.0 10.0.0.5 
+ip route 10.16.16.0 255.255.248.0 10.0.0.9 
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^C
+************************************************
+
+WELCOME TO METROE'S ROUTER.
+
+************************************************
+
+^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 3
+ password 7 0822455D0A16
+ login local
+line vty 4
+ password 7 0822455D0A16
+ login local
+ transport input ssh
+!
+!
+!
+end
