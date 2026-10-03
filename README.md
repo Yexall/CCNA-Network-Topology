@@ -47,7 +47,7 @@ To access and test device configurations across the topology, use the following 
 * **Topology Discovery & Path Verification:** Mapped physical inter-switch connections using Cisco Discovery Protocol (CDP) and Link Layer Discovery Protocol (LLDP) neighbor tables, explicitly enabling and disabling protocols globally or on specific interfaces to control neighbor updates, visibility and link path verification.
 * **EtherChannel Aggregation & Load Balancing (Az):** Grouped physical interfaces into logical Port-Channels across inter-switch links and configured custom frame load-distribution algorithms to optimize traffic hashing and eliminate link congestion.
 * **Enterprise Wireless LAN Deployment (Az):** Integrated a Wireless LAN Controller (WLC) and Lightweight Access Points (LAPs) to provide centralized wireless management, WPA2-PSK security and dynamic IP provisioning across dedicated wireless VLANs.
-* **Static, Default & Floating Routing:** Configured explicit static routes on the MetroE router, default routes (`0.0.0.0/0`) on regional edge routers and a floating static route between Arizona and Florida for automated WAN path redundancy.
+* **Static, Default & Floating Routing:** Configured explicit static routes on the MetroE router and default routes (`0.0.0.0/0`) on regional edge routers.
 
 --- 
 
@@ -58,7 +58,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show cdp neighbors` / `show lldp neighbors` — Validated neighbor relationships and local/remote port mappings.
 * `show spanning-tree` — Confirmed Root Bridge election and blocked/designated port states.
 * `show etherchannel summary` & `show etherchannel load-balance` — Validated operational status of Port-Channels, member port bundling and load-distribution methods.
-* `show ip route` / `tracert <ip>` — Validated active routing table entries, verified default gateway propagation and confirmed primary vs. floating backup route installation.
+* `show ip route` — Validated active routing table entries and verified default gateway propagation.
 
 ---
 
