@@ -47,7 +47,8 @@ To access and test device configurations across the topology, use the following 
 * **Topology Discovery & Path Verification:** Mapped physical inter-switch connections using Cisco Discovery Protocol (CDP) and Link Layer Discovery Protocol (LLDP) neighbor tables, explicitly enabling and disabling protocols globally or on specific interfaces to control neighbor updates, visibility and link path verification.
 * **EtherChannel Aggregation & Load Balancing (Az):** Grouped physical interfaces into logical Port-Channels across inter-switch links and configured custom frame load-distribution algorithms to optimize traffic hashing and eliminate link congestion.
 * **Enterprise Wireless LAN Deployment (Az):** Integrated a Wireless LAN Controller (WLC) and Lightweight Access Points (LAPs) to provide centralized wireless management, WPA2-PSK security and dynamic IP provisioning across dedicated wireless VLANs.
-* **Static, Default & Floating Routing:** Configured explicit static routes on the MetroE router and default routes (`0.0.0.0/0`) on regional edge routers.
+* **Static and Default Routing:** Configured explicit static routes on the MetroE router and default routes (`0.0.0.0/0`) on regional edge routers.
+* **Hybrid NAT/PAT Strategy & Dynamic Pool Allocation (Az):** Implemented a dual-NAT architecture on the edge router using both Interface-based PAT for local VLANs and Dynamic NAT with Pool Overload across a public block for downstream subnets routed over the MetroE transit link.
 
 --- 
 
@@ -59,6 +60,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show spanning-tree` — Confirmed Root Bridge election and blocked/designated port states.
 * `show etherchannel summary` & `show etherchannel load-balance` — Validated operational status of Port-Channels, member port bundling and load-distribution methods.
 * `show ip route` — Validated active routing table entries and verified default gateway propagation.
+* `show ip nat translations` & `show access-lists` — Verified active real-time NAT/PAT mappings while cross-referencing ACL match counters to ensure downstream subnet traffic correctly triggered translation rules.
 
 ---
 
@@ -67,6 +69,9 @@ The integrity of the network topology was verified using key diagnostic commands
 ### Wireless LAN Controller (WLC) & AP Isolation
 * **DHCP Scope Definitions:** Resolved subnet vs. host IP configuration issues by defining proper Subnet IDs (`10.16.0.0/24`) and Pool Start addresses (`10.16.0.11`).
 * **Traffic Flow Validation:** Used static IP addressing (`10.16.0.50`) to isolate and verify CAPWAP tunnel encapsulation and bridge forwarding independently from DHCP relay behavior.
+### Hybrid NAT/PAT & Downstream Routing (Az-R1 & MetroE)
+* **Bidirectional Routing & Gateway of Last Resort:** Resolved issue where PCs behind the MetroE router could reach `Az-R1`'s LAN interface but failed to ping the public WAN gateway by configuring a default route on the MetroE router pointing back to `Az-R1`.
+* **Private IP Pool Address Dropping:** Identified packet loss when testing dynamic pool translations using RFC 1918 private IP pools (`192.168.1.x`). Resolved by reallocating the pool to use valid public IP addresses (`203.0.113.x/29`) within the ISP's assigned range so return traffic could be routed properly across the WAN edge.
 
 ---
 
