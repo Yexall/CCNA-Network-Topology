@@ -43,14 +43,15 @@ spanning-tree mode pvst
 !
 interface GigabitEthernet0/0
  ip address 10.0.0.1 255.255.255.252
+ ip nat inside
  duplex auto
  speed auto
 !
 interface GigabitEthernet0/1
- no ip address
+ ip address 203.0.113.1 255.255.255.248
+ ip nat outside
  duplex auto
  speed auto
- shutdown
 !
 interface FastEthernet0/0/0
  switchport mode trunk
@@ -72,27 +73,43 @@ interface Vlan1
 interface Vlan10
  mac-address 00d0.ba6d.1b01
  ip address 10.16.0.1 255.255.255.0
+ ip nat inside
 !
 interface Vlan20
  mac-address 00d0.ba6d.1b02
  ip address 10.16.2.1 255.255.255.0
+ ip nat inside
 !
 interface Vlan30
  mac-address 00d0.ba6d.1b03
  ip address 10.16.4.1 255.255.254.0
+ ip nat inside
 !
 interface Vlan40
  mac-address 00d0.ba6d.1b04
  ip address 10.16.6.1 255.255.254.0
+ ip nat inside
 !
 router rip
 !
+ip nat pool IP_Pool 203.0.113.50 203.0.113.55 netmask 255.255.255.248
+ip nat inside source list NAT_Overload interface GigabitEthernet0/1 overload
+ip nat inside source list NAT_Pool pool IP_Pool overload
 ip classless
-ip route 0.0.0.0 0.0.0.0 10.0.0.2 
+ip route 0.0.0.0 0.0.0.0 203.0.113.2 
+ip route 10.0.0.4 255.255.255.252 10.0.0.2 
+ip route 10.16.8.0 255.255.248.0 10.0.0.2 
+ip route 10.16.16.0 255.255.248.0 10.0.0.2 
+ip route 10.0.0.8 255.255.255.252 10.0.0.2 
 !
 ip flow-export version 9
 !
 !
+ip access-list standard NAT_Pool
+ permit 10.16.8.0 0.0.7.255
+ permit 10.16.16.0 0.0.7.255
+ip access-list standard NAT_Overload
+ permit 10.16.0.0 0.0.7.255
 !
 banner motd ^C
 ***********************************************
