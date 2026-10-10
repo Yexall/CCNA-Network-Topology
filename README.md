@@ -49,6 +49,7 @@ To access and test device configurations across the topology, use the following 
 * **Enterprise Wireless LAN Deployment (Az):** Integrated a Wireless LAN Controller (WLC) and Lightweight Access Points (LAPs) to provide centralized wireless management, WPA2-PSK security and dynamic IP provisioning across dedicated wireless VLANs.
 * **Static and Default Routing:** Configured explicit static routes on the MetroE router and default routes (`0.0.0.0/0`) on regional edge routers.
 * **Hybrid NAT/PAT Strategy & Dynamic Pool Allocation (Az):** Implemented a dual-NAT architecture on the edge router using both Interface-based PAT for local VLANs and Dynamic NAT with Pool Overload across a public block for downstream subnets routed over the MetroE transit link.
+* **Network Time Protocol (NTP) Hierarchy (All Regions):** Synchronized regional network clocks by configuring regional edge routers to pull time from a shared NTP source and act as local NTP masters for their respective regional branch devices and switches over management VLANs.
 
 --- 
 
@@ -61,6 +62,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show etherchannel summary` & `show etherchannel load-balance` — Validated operational status of Port-Channels, member port bundling and load-distribution methods.
 * `show ip route` — Validated active routing table entries and verified default gateway propagation.
 * `show ip nat translations` & `show access-lists` — Verified active real-time NAT/PAT mappings while cross-referencing ACL match counters to ensure downstream subnet traffic correctly triggered translation rules.
+* `show ntp status` & `show ntp associations` — Validated clock synchronization state, stratum levels and upstream/downstream peer associations.
 
 ---
 
