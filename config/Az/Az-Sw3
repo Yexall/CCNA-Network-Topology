@@ -5,6 +5,7 @@ enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
 !
 !
 no ip domain-lookup
+ip domain-name arizona.cbtnuggets.com
 !
 !
 !
@@ -77,7 +78,10 @@ interface GigabitEthernet0/1
 interface GigabitEthernet0/2
 !
 interface Vlan1
- ip address 10.16.0.4 255.255.248.0
+ no ip address
+!
+interface Vlan10
+ ip address 10.16.0.4 255.255.255.0
 !
 banner motd ^C
 ************************************************
