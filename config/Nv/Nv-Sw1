@@ -4,7 +4,10 @@ enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
 !
 !
 !
+clock timezone Nv -8
+!
 no ip domain-lookup
+ip domain-name nevada.cbtnuggets.com
 !
 !
 !
@@ -97,7 +100,10 @@ interface GigabitEthernet0/1
 interface GigabitEthernet0/2
 !
 interface Vlan1
- ip address 10.16.8.2 255.255.248.0
+ no ip address
+!
+interface Vlan10
+ ip address dhcp
 !
 banner motd ^C
 ************************************************
@@ -124,5 +130,6 @@ line vty 5 15
 !
 !
 !
+ntp server 10.16.8.1
 !
 end
