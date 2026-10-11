@@ -50,6 +50,7 @@ To access and test device configurations across the topology, use the following 
 * **Static and Default Routing:** Configured explicit static routes on the MetroE router and default routes (`0.0.0.0/0`) on regional edge routers.
 * **Hybrid NAT/PAT Strategy & Dynamic Pool Allocation (Az):** Implemented a dual-NAT architecture on the edge router using both Interface-based PAT for local VLANs and Dynamic NAT with Pool Overload across a public block for downstream subnets routed over the MetroE transit link.
 * **Network Time Protocol (NTP) Hierarchy (All regions):** Established a complete hierarchical NTP design where the Arizona edge router pulls time from an external NTP server across the ISP router, acting as the primary enterprise time source. It then feeds the Florida and Nevada regional edge routers, which serve as local NTP masters for their respective branch switches and downstream devices.
+* **Centralized & Relayed DHCP Services (All regions):** Configured the Arizona edge router as the primary DHCP server managing local pools, while leveraging IP helper addresses on regional edge routers and subinterfaces to relay broadcast DHCP discover messages across WAN links and discrete VLAN segments to dynamically assign IPs to branch devices and switches.
 
 --- 
 
@@ -63,6 +64,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show ip route` — Validated active routing table entries and verified default gateway propagation.
 * `show ip nat translations` & `show access-lists` — Verified active real-time NAT/PAT mappings while cross-referencing ACL match counters to ensure downstream subnet traffic correctly triggered translation rules.
 * `show ntp status` & `show ntp associations` — Validated clock synchronization state, stratum levels and upstream/downstream peer associations.
+* `show ip dhcp binding` & `show ip dhcp pool` — Validated active lease allocations, pool utilization and client IP-to-MAC bindings across regional subnets.
 
 ---
 
