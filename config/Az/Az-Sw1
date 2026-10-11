@@ -6,6 +6,8 @@ enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
 !
 !
 !
+clock timezone Az -7
+!
 !
 !
 !
@@ -109,8 +111,13 @@ interface GigabitEthernet0/2
  channel-group 10 mode active
 !
 interface Vlan1
- ip address 10.16.0.2 255.255.248.0
+ no ip address
 !
+interface Vlan10
+ mac-address 0004.9a04.5101
+ ip address 10.16.0.2 255.255.255.0
+!
+ip default-gateway 10.16.0.1
 ip classless
 !
 ip flow-export version 9
@@ -143,5 +150,6 @@ line vty 0 4
 !
 !
 !
+ntp server 10.16.0.1
 !
 end
