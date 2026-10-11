@@ -6,6 +6,8 @@ enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
 !
 !
 !
+clock timezone Nv -8
+!
 !
 !
 !
@@ -54,6 +56,7 @@ interface GigabitEthernet0/1
 interface GigabitEthernet0/1.10
  encapsulation dot1Q 10
  ip address 10.16.8.1 255.255.255.0
+ ip helper-address 10.0.0.1
 !
 interface GigabitEthernet0/1.20
  encapsulation dot1Q 20
@@ -110,5 +113,6 @@ line vty 0 4
  login local
 !
 !
+ntp master
 !
 end
