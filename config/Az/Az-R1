@@ -24,6 +24,15 @@ ip dhcp pool NEVADA(V10)
  default-router 10.16.8.1
  dns-server 8.8.8.8
  domain-name nevada.cbtnuggets.com
+!
+!
+aaa new-model
+!
+aaa authentication login Use-AAA group tacacs+ 
+!
+!
+!
+!
 clock timezone Az -7
 !
 !
@@ -64,6 +73,7 @@ spanning-tree mode pvst
 interface GigabitEthernet0/0
  ip address 10.0.0.1 255.255.255.252
  ip nat inside
+ ip access-group 100 out
  duplex auto
  speed auto
 !
@@ -130,6 +140,13 @@ ip access-list standard NAT_Pool
  permit 10.16.16.0 0.0.7.255
 ip access-list standard NAT_Overload
  permit 10.16.0.0 0.0.7.255
+access-list 100 permit tcp 10.16.0.0 0.0.0.255 any eq www
+access-list 100 permit icmp host 10.16.0.12 host 10.0.0.5
+access-list 100 deny icmp 10.16.0.0 0.0.0.255 10.0.0.0 0.0.0.3
+access-list 100 deny icmp 10.16.0.0 0.0.0.255 10.0.0.4 0.0.0.3
+access-list 100 deny icmp 10.16.0.0 0.0.0.255 10.0.0.8 0.0.0.3
+access-list 100 deny tcp 10.16.0.0 0.0.0.255 any
+access-list 100 permit ip any any
 !
 banner motd ^C
 ***********************************************
@@ -140,19 +157,19 @@ WELCOME TO THE ROUTER.
 
 ^C
 !
+tacacs-server host 10.16.0.6 key cisco
 !
 !
 !
 line con 0
  password 7 0822455D0A16
  logging synchronous
- login
 !
 line aux 0
 !
 line vty 0 4
  password 7 0822455D0A16
- login local
+ login authentication Use-AAA
 !
 !
 ntp server 192.168.1.100
