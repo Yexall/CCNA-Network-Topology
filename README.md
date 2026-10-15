@@ -51,6 +51,8 @@ To access and test device configurations across the topology, use the following 
 * **Hybrid NAT/PAT Strategy & Dynamic Pool Allocation (Az):** Implemented a dual-NAT architecture on the edge router using both Interface-based PAT for local VLANs and Dynamic NAT with Pool Overload across a public block for downstream subnets routed over the MetroE transit link.
 * **Network Time Protocol (NTP) Hierarchy (All regions):** Established a complete hierarchical NTP design where the Arizona edge router pulls time from an external NTP server across the ISP router, acting as the primary enterprise time source. It then feeds the Florida and Nevada regional edge routers, which serve as local NTP masters for their respective branch switches and downstream devices.
 * **Centralized & Relayed DHCP Services (All regions):** Configured the Arizona edge router as the primary DHCP server managing local pools, while leveraging IP helper addresses on regional edge routers and subinterfaces to relay broadcast DHCP discover messages across WAN links and discrete VLAN segments to dynamically assign IPs to branch devices and switches.
+* **AAA Authentication & TACACS+ Security (Az):** Implemented AAA security frameworks utilizing centralized TACACS+ server integration for secure remote management, enforcing strict login authentication lists (Use-AAA) across VTY line access.
+* **Extended Access List Traffic Filtering (Az):** Configured Extended Access List 100 on enterprise router interfaces to inspect and filter traffic, explicitly permitting target HTTP web traffic and authorized host ICMP communication while denying unauthorized ICMP subnets and general inbound/outbound TCP flows.
 
 --- 
 
@@ -65,6 +67,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show ip nat translations` & `show access-lists` — Verified active real-time NAT/PAT mappings while cross-referencing ACL match counters to ensure downstream subnet traffic correctly triggered translation rules.
 * `show ntp status` & `show ntp associations` — Validated clock synchronization state, stratum levels and upstream/downstream peer associations.
 * `show ip dhcp binding` & `show ip dhcp pool` — Validated active lease allocations, pool utilization and client IP-to-MAC bindings across regional subnets.
+* `show access-lists` & `show ip int <interface>` — Verified rule ordering, syntax correctness, and incrementing match counters to ensure packet enforcement.
 
 ---
 
@@ -81,3 +84,4 @@ The integrity of the network topology was verified using key diagnostic commands
 
 ## To-Do List
 - [ ] Az: Fix wireless laptop not receiving DHCP address due to lease timeout.
+- [ ] Az: Move access list 100 from router interface GigabitEthernet0/0 to Switch 1's SVI (Vlan10).
