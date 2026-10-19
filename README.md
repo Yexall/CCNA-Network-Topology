@@ -53,6 +53,7 @@ To access and test device configurations across the topology, use the following 
 * **Centralized & Relayed DHCP Services (All regions):** Configured the Arizona edge router as the primary DHCP server managing local pools, while leveraging IP helper addresses on regional edge routers and subinterfaces to relay broadcast DHCP discover messages across WAN links and discrete VLAN segments to dynamically assign IPs to branch devices and switches.
 * **AAA Authentication & TACACS+ Security (Az):** Implemented AAA security frameworks utilizing centralized TACACS+ server integration for secure remote management, enforcing strict login authentication lists (Use-AAA) across VTY line access.
 * **Extended Access List Traffic Filtering (Az):** Configured Extended Access List 100 on enterprise router interfaces to inspect and filter traffic, explicitly permitting target HTTP web traffic and authorized host ICMP communication while denying unauthorized ICMP subnets and general inbound/outbound TCP flows.
+* **Switch Port Security & MAC Address Limiting (Az):** Configured port security on core switches within the Arizona regional hub, setting maximum MAC address limits and violation protection modes to secure access ports against unauthorized device attachments and spoofing.
 
 --- 
 
@@ -68,6 +69,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show ntp status` & `show ntp associations` — Validated clock synchronization state, stratum levels and upstream/downstream peer associations.
 * `show ip dhcp binding` & `show ip dhcp pool` — Validated active lease allocations, pool utilization and client IP-to-MAC bindings across regional subnets.
 * `show access-lists` & `show ip int <interface>` — Verified rule ordering, syntax correctness, and incrementing match counters to ensure packet enforcement.
+* `show port-security` & `show port-security interface <interface>` — Verified active port security configurations, violation tracking, maximum MAC counts, and dynamically learned secure addresses on core switch ports.
 
 ---
 
