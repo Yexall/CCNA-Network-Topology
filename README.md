@@ -54,6 +54,7 @@ To access and test device configurations across the topology, use the following 
 * **AAA Authentication & TACACS+ Security (Az):** Implemented AAA security frameworks utilizing centralized TACACS+ server integration for secure remote management, enforcing strict login authentication lists (Use-AAA) across VTY line access.
 * **Extended Access List Traffic Filtering (Az):** Configured Extended Access List 100 on enterprise router interfaces to inspect and filter traffic, explicitly permitting target HTTP web traffic and authorized host ICMP communication while denying unauthorized ICMP subnets and general inbound/outbound TCP flows.
 * **Switch Port Security & MAC Address Limiting (Az):** Configured port security on core switches within the Arizona regional hub, setting maximum MAC address limits and violation protection modes to secure access ports against unauthorized device attachments and spoofing.
+* **DHCP Snooping & Dynamic ARP Inspection (Fl):** Implemented DHCP Snooping and Dynamic ARP Inspection (DAI) across switches in the Florida regional branch's VLAN 30, designating trusted uplink ports and leveraging DHCP binding databases to mitigate rogue DHCP servers, IP spoofing, and ARP poisoning attacks.
 
 --- 
 
@@ -70,6 +71,7 @@ The integrity of the network topology was verified using key diagnostic commands
 * `show ip dhcp binding` & `show ip dhcp pool` — Validated active lease allocations, pool utilization and client IP-to-MAC bindings across regional subnets.
 * `show access-lists` & `show ip int <interface>` — Verified rule ordering, syntax correctness, and incrementing match counters to ensure packet enforcement.
 * `show port-security` & `show port-security interface <interface>` — Verified active port security configurations, violation tracking, maximum MAC counts, and dynamically learned secure addresses on core switch ports.
+* `show ip dhcp snooping [binding]` & `show ip arp inspection [vlan # || interfaces]` — Verified global snooping/inspection status, trusted port parameters, and binding table lookups (Note: DAI inspection behavior was partially evaluated due to simulation-environment command limitations).
 
 ---
 
@@ -87,3 +89,4 @@ The integrity of the network topology was verified using key diagnostic commands
 ## To-Do List
 - [ ] Az: Fix wireless laptop not receiving DHCP address due to lease timeout.
 - [ ] Az: Move access list 100 from router interface GigabitEthernet0/0 to Switch 1's SVI (Vlan10).
+- [ ] Fl: Verify Dynamic ARP Inspection functionality and test potential command/feature limitations within Cisco Packet Tracer.
