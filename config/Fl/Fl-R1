@@ -5,7 +5,12 @@ hostname Fl-R1
 enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
 !
 !
+ip dhcp excluded-address 10.16.20.1 10.16.20.10
 !
+ip dhcp pool FLORIDA(V30)
+ network 10.16.20.0 255.255.254.0
+ default-router 10.16.20.1
+ dns-server 8.8.8.8
 clock timezone Fl -5
 !
 !
@@ -61,6 +66,10 @@ interface GigabitEthernet0/1.10
 interface GigabitEthernet0/1.20
  encapsulation dot1Q 20
  ip address 10.16.18.1 255.255.255.0
+!
+interface GigabitEthernet0/1.30
+ encapsulation dot1Q 30
+ ip address 10.16.20.1 255.255.254.0
 !
 interface FastEthernet0/0/0
  switchport mode access
