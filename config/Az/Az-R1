@@ -6,8 +6,8 @@ enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
 !
 !
 ip dhcp excluded-address 10.16.0.1 10.16.0.10
-ip dhcp excluded-address 10.16.16.1
-ip dhcp excluded-address 10.16.8.1
+ip dhcp excluded-address 10.16.16.1 10.16.16.10
+ip dhcp excluded-address 10.16.8.1 10.16.8.10
 !
 ip dhcp pool FLORIDA(V10)
  network 10.16.16.0 255.255.248.0
